@@ -1,5 +1,5 @@
-# UMT for Multimodal Named Entity Recognition (MNER)
-Two MNER Datasets used in our ACL'2020 paper.
+# Unified Multimodal Transformer (UMT) for Multimodal Named Entity Recognition (MNER)
+Two MNER Datasets used in our ACL'2020 paper: Improving Multimodal Named Entity Recognition via Entity Span Detection with Unified Multimodal Transformer.
 
 Author
 
