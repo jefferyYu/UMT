@@ -1,0 +1,905 @@
+run_mtmner_crf.py
+twitter2017
+MTCCMBert
+07/01/2020 10:42:34 - INFO - __main__ -   device: cuda n_gpu: 1, distributed training: False, 16-bits training: False
+07/01/2020 10:42:36 - INFO - my_bert.tokenization -   loading vocabulary file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt from cache at /home/jfyu/.cache/torch/pytorch_pretrained_bert/5e8a2b4893d13790ed4150ca1906be5f7a03d6c4ddf62296c383f6db42814db2.e13dbb970cb325137104fb2e5f36fe865f27746c6b526f6352861b1980eb80b1
+The number of samples: 3373
+The number of images: 3373
+07/01/2020 10:42:37 - INFO - my_bert.mner_modeling -   loading archive file https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased.tar.gz from cache at /home/jfyu/.cache/torch/pytorch_pretrained_bert/distributed_-1/a803ce83ca27fecf74c355673c434e51c265fb8a3e0e57ac62a80e38ba98d384.681017f415dfb33ec8d0e04fe51a619f3f01532ecea04edbfd48c5d160550d9c
+07/01/2020 10:42:37 - INFO - my_bert.mner_modeling -   extracting archive file /home/jfyu/.cache/torch/pytorch_pretrained_bert/distributed_-1/a803ce83ca27fecf74c355673c434e51c265fb8a3e0e57ac62a80e38ba98d384.681017f415dfb33ec8d0e04fe51a619f3f01532ecea04edbfd48c5d160550d9c to temp dir /tmp/tmpqvgth2m7
+07/01/2020 10:42:41 - INFO - my_bert.mner_modeling -   Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 28996
+}
+
+07/01/2020 10:42:44 - INFO - my_bert.mner_modeling -   Weights of MTCCMBertForMMTokenClassificationCRF not initialized from pretrained model: ['self_attention.layer.0.attention.self.query.weight', 'self_attention.layer.0.attention.self.query.bias', 'self_attention.layer.0.attention.self.key.weight', 'self_attention.layer.0.attention.self.key.bias', 'self_attention.layer.0.attention.self.value.weight', 'self_attention.layer.0.attention.self.value.bias', 'self_attention.layer.0.attention.output.dense.weight', 'self_attention.layer.0.attention.output.dense.bias', 'self_attention.layer.0.attention.output.LayerNorm.weight', 'self_attention.layer.0.attention.output.LayerNorm.bias', 'self_attention.layer.0.intermediate.dense.weight', 'self_attention.layer.0.intermediate.dense.bias', 'self_attention.layer.0.output.dense.weight', 'self_attention.layer.0.output.dense.bias', 'self_attention.layer.0.output.LayerNorm.weight', 'self_attention.layer.0.output.LayerNorm.bias', 'self_attention_v2.layer.0.attention.self.query.weight', 'self_attention_v2.layer.0.attention.self.query.bias', 'self_attention_v2.layer.0.attention.self.key.weight', 'self_attention_v2.layer.0.attention.self.key.bias', 'self_attention_v2.layer.0.attention.self.value.weight', 'self_attention_v2.layer.0.attention.self.value.bias', 'self_attention_v2.layer.0.attention.output.dense.weight', 'self_attention_v2.layer.0.attention.output.dense.bias', 'self_attention_v2.layer.0.attention.output.LayerNorm.weight', 'self_attention_v2.layer.0.attention.output.LayerNorm.bias', 'self_attention_v2.layer.0.intermediate.dense.weight', 'self_attention_v2.layer.0.intermediate.dense.bias', 'self_attention_v2.layer.0.output.dense.weight', 'self_attention_v2.layer.0.output.dense.bias', 'self_attention_v2.layer.0.output.LayerNorm.weight', 'self_attention_v2.layer.0.output.LayerNorm.bias', 'vismap2text.weight', 'vismap2text.bias', 'vismap2text_v2.weight', 'vismap2text_v2.bias', 'txt2img_attention.layer.0.attention.self.query.weight', 'txt2img_attention.layer.0.attention.self.query.bias', 'txt2img_attention.layer.0.attention.self.key.weight', 'txt2img_attention.layer.0.attention.self.key.bias', 'txt2img_attention.layer.0.attention.self.value.weight', 'txt2img_attention.layer.0.attention.self.value.bias', 'txt2img_attention.layer.0.attention.output.dense.weight', 'txt2img_attention.layer.0.attention.output.dense.bias', 'txt2img_attention.layer.0.attention.output.LayerNorm.weight', 'txt2img_attention.layer.0.attention.output.LayerNorm.bias', 'txt2img_attention.layer.0.intermediate.dense.weight', 'txt2img_attention.layer.0.intermediate.dense.bias', 'txt2img_attention.layer.0.output.dense.weight', 'txt2img_attention.layer.0.output.dense.bias', 'txt2img_attention.layer.0.output.LayerNorm.weight', 'txt2img_attention.layer.0.output.LayerNorm.bias', 'img2txt_attention.layer.0.attention.self.query.weight', 'img2txt_attention.layer.0.attention.self.query.bias', 'img2txt_attention.layer.0.attention.self.key.weight', 'img2txt_attention.layer.0.attention.self.key.bias', 'img2txt_attention.layer.0.attention.self.value.weight', 'img2txt_attention.layer.0.attention.self.value.bias', 'img2txt_attention.layer.0.attention.output.dense.weight', 'img2txt_attention.layer.0.attention.output.dense.bias', 'img2txt_attention.layer.0.attention.output.LayerNorm.weight', 'img2txt_attention.layer.0.attention.output.LayerNorm.bias', 'img2txt_attention.layer.0.intermediate.dense.weight', 'img2txt_attention.layer.0.intermediate.dense.bias', 'img2txt_attention.layer.0.output.dense.weight', 'img2txt_attention.layer.0.output.dense.bias', 'img2txt_attention.layer.0.output.LayerNorm.weight', 'img2txt_attention.layer.0.output.LayerNorm.bias', 'txt2txt_attention.layer.0.attention.self.query.weight', 'txt2txt_attention.layer.0.attention.self.query.bias', 'txt2txt_attention.layer.0.attention.self.key.weight', 'txt2txt_attention.layer.0.attention.self.key.bias', 'txt2txt_attention.layer.0.attention.self.value.weight', 'txt2txt_attention.layer.0.attention.self.value.bias', 'txt2txt_attention.layer.0.attention.output.dense.weight', 'txt2txt_attention.layer.0.attention.output.dense.bias', 'txt2txt_attention.layer.0.attention.output.LayerNorm.weight', 'txt2txt_attention.layer.0.attention.output.LayerNorm.bias', 'txt2txt_attention.layer.0.intermediate.dense.weight', 'txt2txt_attention.layer.0.intermediate.dense.bias', 'txt2txt_attention.layer.0.output.dense.weight', 'txt2txt_attention.layer.0.output.dense.bias', 'txt2txt_attention.layer.0.output.LayerNorm.weight', 'txt2txt_attention.layer.0.output.LayerNorm.bias', 'gate.weight', 'gate.bias', 'classifier.weight', 'classifier.bias', 'aux_classifier.weight', 'aux_classifier.bias', 'crf.start_transitions', 'crf.end_transitions', 'crf.transitions', 'aux_crf.start_transitions', 'aux_crf.end_transitions', 'aux_crf.transitions']
+07/01/2020 10:42:44 - INFO - my_bert.mner_modeling -   Weights from pretrained model not used in MTCCMBertForMMTokenClassificationCRF: ['cls.predictions.bias', 'cls.predictions.transform.dense.weight', 'cls.predictions.transform.dense.bias', 'cls.predictions.decoder.weight', 'cls.seq_relationship.weight', 'cls.seq_relationship.bias', 'cls.predictions.transform.LayerNorm.weight', 'cls.predictions.transform.LayerNorm.bias']
+07/01/2020 10:42:51 - INFO - __main__ -   *** Example ***
+07/01/2020 10:42:51 - INFO - __main__ -   guid: train-0
+07/01/2020 10:42:51 - INFO - __main__ -   tokens: New Post : Blackburn Festival of Voice 2017
+07/01/2020 10:42:51 - INFO - __main__ -   input_ids: 101 1203 3799 131 14428 2263 1104 7900 1504 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   label: 11 1 1 1 2 3 3 3 1 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   auxlabel: 5 1 1 1 2 3 3 3 1 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   *** Example ***
+07/01/2020 10:42:51 - INFO - __main__ -   guid: train-1
+07/01/2020 10:42:51 - INFO - __main__ -   tokens: # NBA : Ka ##w ##hi Leonard wins the fan vote for Block of the Year ! # NBA ##A ##ward ##s
+07/01/2020 10:42:51 - INFO - __main__ -   input_ids: 101 108 5803 131 14812 2246 3031 7377 4646 1103 5442 2992 1111 8093 1104 1103 2381 106 108 5803 1592 5984 1116 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   label: 11 1 6 1 4 10 10 5 1 1 1 1 1 1 1 1 1 1 1 2 10 10 10 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:42:51 - INFO - __main__ -   auxlabel: 5 1 2 1 2 4 4 3 1 1 1 1 1 1 1 1 1 1 1 2 4 4 4 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+the number of problematic samples: 362
+The number of samples: 723
+The number of images: 723
+07/01/2020 10:43:28 - INFO - __main__ -   *** Example ***
+07/01/2020 10:43:28 - INFO - __main__ -   guid: dev-0
+07/01/2020 10:43:28 - INFO - __main__ -   tokens: I love me a bad bitch with a time machine . I ' m shook [UNK] [UNK] # B ##rit ##ney ##L ##ive ##I ##n ##C ##on ##cer ##t
+07/01/2020 10:43:28 - INFO - __main__ -   input_ids: 101 146 1567 1143 170 2213 7979 1114 170 1159 3395 119 146 112 182 2291 100 100 108 139 7729 4695 2162 2109 2240 1179 1658 1320 14840 1204 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   label: 11 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 10 10 10 10 10 10 10 10 10 10 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   auxlabel: 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 4 4 4 4 4 4 4 4 4 4 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   *** Example ***
+07/01/2020 10:43:28 - INFO - __main__ -   guid: dev-1
+07/01/2020 10:43:28 - INFO - __main__ -   tokens: Summer is the best time to catch one of the many musical concerts in the # Nashville area !
+07/01/2020 10:43:28 - INFO - __main__ -   input_ids: 101 2659 1110 1103 1436 1159 1106 3963 1141 1104 1103 1242 2696 6460 1107 1103 108 8029 1298 106 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   label: 11 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 8 1 1 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:28 - INFO - __main__ -   auxlabel: 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+the number of problematic samples: 84
+The number of samples: 723
+The number of images: 723
+07/01/2020 10:43:37 - INFO - __main__ -   *** Example ***
+07/01/2020 10:43:37 - INFO - __main__ -   guid: test-0
+07/01/2020 10:43:37 - INFO - __main__ -   tokens: C ##iti ##field Fan View : R ##T @ j ##eh ##nny ##b ##good ##e What a gorgeous day for baseball ! St ##uck in that Sa ##tur ##da ##ze . # New ##Y ##or ##k ##M ##ets V ##S # Sa …
+07/01/2020 10:43:37 - INFO - __main__ -   input_ids: 101 140 17030 2427 16061 10344 131 155 1942 137 179 10486 15863 1830 23684 1162 1327 170 10144 1285 1111 3866 106 1457 8474 1107 1115 17784 20362 1810 3171 119 108 1203 3663 1766 1377 2107 6248 159 1708 108 17784 795 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   label: 11 8 10 10 1 1 1 1 10 1 4 10 10 10 10 10 1 1 1 1 1 1 1 1 10 1 1 1 10 10 10 1 1 6 10 10 10 10 10 1 10 1 1 1 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   auxlabel: 5 2 4 4 1 1 1 1 4 1 2 4 4 4 4 4 1 1 1 1 1 1 1 1 4 1 1 1 4 4 4 1 1 2 4 4 4 4 4 1 4 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   *** Example ***
+07/01/2020 10:43:37 - INFO - __main__ -   guid: test-1
+07/01/2020 10:43:37 - INFO - __main__ -   tokens: Just used my Pass Master on Wayne Rooney on @ ultimate ##fan ##li ##ve for # m ##uf ##c vs # a ##f ##c ##b
+07/01/2020 10:43:37 - INFO - __main__ -   input_ids: 101 2066 1215 1139 9157 3257 1113 5489 27238 1113 137 10010 16740 2646 2707 1111 108 182 16205 1665 5016 108 170 2087 1665 1830 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   label: 11 1 1 1 1 1 1 4 5 1 1 1 10 10 10 1 1 6 10 10 1 1 6 10 10 10 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 10:43:37 - INFO - __main__ -   auxlabel: 5 1 1 1 1 1 1 2 3 1 1 1 4 4 4 1 1 2 4 4 1 1 2 4 4 4 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+the number of problematic samples: 78
+07/01/2020 10:43:45 - INFO - __main__ -   ***** Running training *****
+Epoch:   0%|                                                                                                                               | 0/22 [00:00<?, ?it/s]07/01/2020 10:43:46 - INFO - __main__ -   ********** Epoch: 0 **********
+07/01/2020 10:43:46 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:43:46 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:43:46 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  run_mtmner_crf.py:799: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  trans_matrix = torch.tensor(trans_matrix).to(device)
+                                                                                                                                                                  07/01/2020 10:45:10 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:24<00:00,  1.36it/s]
+07/01/2020 10:45:10 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:45:10 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:45:15 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.95it/s]
+07/01/2020 10:45:15 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9057    0.8435    0.8734       626
+      ORG     0.7565    0.7787    0.7674       375
+      LOC     0.6743    0.6821    0.6782       173
+     MISC     0.4766    0.4067    0.4388       150
+
+micro avg     0.7841    0.7545    0.7691      1324
+macro avg     0.7846    0.7545    0.7687      1324
+
+F-score:  0.7691
+07/01/2020 10:45:15 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:45:15 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:45:15 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:45:21 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.95it/s]
+07/01/2020 10:45:21 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9214    0.8680    0.8939       621
+      LOC     0.7526    0.8202    0.7849       178
+      ORG     0.7438    0.7646    0.7541       395
+     MISC     0.5169    0.3885    0.4436       157
+
+micro avg     0.8031    0.7757    0.7892      1351
+macro avg     0.8002    0.7757    0.7863      1351
+
+Epoch:   5%|█████▍                                                                                                                 | 1/22 [01:36<33:46, 96.49s/it]07/01/2020 10:45:22 - INFO - __main__ -   ********** Epoch: 1 **********
+07/01/2020 10:45:22 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:45:22 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:45:22 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:46:47 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 10:46:47 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:46:47 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:46:53 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.88it/s]
+07/01/2020 10:46:53 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9171    0.8834    0.8999       626
+      ORG     0.7742    0.8320    0.8021       375
+      LOC     0.8052    0.7168    0.7584       173
+     MISC     0.6454    0.6067    0.6254       150
+
+micro avg     0.8194    0.8157    0.8176      1324
+macro avg     0.8312    0.8157    0.8226      1324
+
+F-score:  0.8176
+07/01/2020 10:46:53 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:46:53 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:46:53 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:46:59 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.85it/s]
+07/01/2020 10:46:59 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9109    0.8889    0.8998       621
+      LOC     0.8773    0.8034    0.8387       178
+      ORG     0.7899    0.8278    0.8084       395
+     MISC     0.6131    0.5350    0.5714       157
+
+micro avg     0.8297    0.8187    0.8241      1351
+macro avg     0.8365    0.8187    0.8268      1351
+
+Epoch:   9%|██████████▊                                                                                                            | 2/22 [03:17<32:37, 97.86s/it]07/01/2020 10:47:03 - INFO - __main__ -   ********** Epoch: 2 **********
+07/01/2020 10:47:03 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:47:03 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:47:03 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:48:28 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 10:48:28 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:48:28 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:48:34 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.84it/s]
+07/01/2020 10:48:34 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8529    0.9265    0.8882       626
+      ORG     0.7921    0.8533    0.8216       375
+      LOC     0.7947    0.6936    0.7407       173
+     MISC     0.6442    0.7000    0.6709       150
+
+micro avg     0.8007    0.8497    0.8245      1324
+macro avg     0.8044    0.8497    0.8254      1324
+
+F-score:  0.8245
+07/01/2020 10:48:34 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:48:34 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:48:34 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:48:40 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.82it/s]
+07/01/2020 10:48:40 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8440    0.9147    0.8779       621
+      LOC     0.8675    0.8090    0.8372       178
+      ORG     0.7937    0.8278    0.8104       395
+     MISC     0.6387    0.6306    0.6346       157
+
+micro avg     0.8054    0.8423    0.8234      1351
+macro avg     0.8085    0.8423    0.8245      1351
+
+Epoch:  14%|████████████████▏                                                                                                      | 3/22 [04:58<31:19, 98.91s/it]07/01/2020 10:48:44 - INFO - __main__ -   ********** Epoch: 3 **********
+07/01/2020 10:48:44 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:48:44 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:48:44 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:50:10 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 10:50:10 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:50:10 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:50:16 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.83it/s]
+07/01/2020 10:50:16 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9180    0.8946    0.9061       626
+      ORG     0.8066    0.8453    0.8255       375
+      LOC     0.8049    0.7630    0.7834       173
+     MISC     0.6250    0.7000    0.6604       150
+
+micro avg     0.8320    0.8414    0.8367      1324
+macro avg     0.8385    0.8414    0.8394      1324
+
+F-score:  0.8367
+07/01/2020 10:50:16 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:50:16 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:50:16 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:50:22 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.82it/s]
+07/01/2020 10:50:22 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9094    0.9050    0.9072       621
+      LOC     0.8671    0.8427    0.8547       178
+      ORG     0.8058    0.8405    0.8228       395
+     MISC     0.6258    0.6497    0.6375       157
+
+micro avg     0.8377    0.8483    0.8430      1351
+macro avg     0.8406    0.8483    0.8443      1351
+
+Epoch:  18%|█████████████████████▋                                                                                                 | 4/22 [06:40<29:55, 99.73s/it]07/01/2020 10:50:26 - INFO - __main__ -   ********** Epoch: 4 **********
+07/01/2020 10:50:26 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:50:26 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:50:26 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:51:52 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 10:51:52 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:51:52 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:51:58 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.82it/s]
+07/01/2020 10:51:58 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8617    0.9153    0.8877       626
+      ORG     0.7764    0.8427    0.8082       375
+      LOC     0.7849    0.7803    0.7826       173
+     MISC     0.6500    0.6933    0.6710       150
+
+micro avg     0.8000    0.8520    0.8252      1324
+macro avg     0.8035    0.8520    0.8269      1324
+
+F-score:  0.8252
+07/01/2020 10:51:58 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:51:58 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:51:58 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:52:04 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.68it/s]
+07/01/2020 10:52:04 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8559    0.9179    0.8858       621
+      LOC     0.8280    0.8652    0.8462       178
+      ORG     0.7887    0.8127    0.8005       395
+     MISC     0.6831    0.6178    0.6488       157
+
+micro avg     0.8146    0.8453    0.8296      1351
+macro avg     0.8125    0.8453    0.8281      1351
+
+Epoch:  23%|███████████████████████████                                                                                            | 5/22 [08:18<28:04, 99.08s/it]07/01/2020 10:52:04 - INFO - __main__ -   ********** Epoch: 5 **********
+07/01/2020 10:52:04 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:52:04 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:52:04 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:53:29 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 10:53:29 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:53:29 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:53:35 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.80it/s]
+07/01/2020 10:53:35 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8955    0.8898    0.8926       626
+      ORG     0.8110    0.8240    0.8175       375
+      LOC     0.8313    0.7977    0.8142       173
+     MISC     0.5949    0.7733    0.6725       150
+
+micro avg     0.8199    0.8459    0.8327      1324
+macro avg     0.8291    0.8459    0.8361      1324
+
+F-score:  0.8327
+07/01/2020 10:53:35 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:53:35 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:53:35 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:53:41 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 10:53:41 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8896    0.9082    0.8988       621
+      LOC     0.8315    0.8596    0.8453       178
+      ORG     0.8226    0.8101    0.8163       395
+     MISC     0.5810    0.6624    0.6190       157
+
+micro avg     0.8220    0.8446    0.8332      1351
+macro avg     0.8265    0.8446    0.8351      1351
+
+Epoch:  27%|████████████████████████████████▍                                                                                      | 6/22 [09:55<26:18, 98.64s/it]07/01/2020 10:53:41 - INFO - __main__ -   ********** Epoch: 6 **********
+07/01/2020 10:53:41 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:53:41 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:53:41 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:55:07 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 10:55:07 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:55:07 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:55:13 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 10:55:13 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8934    0.9105    0.9019       626
+      ORG     0.7780    0.8693    0.8212       375
+      LOC     0.8253    0.7919    0.8083       173
+     MISC     0.6564    0.7133    0.6837       150
+
+micro avg     0.8196    0.8610    0.8398      1324
+macro avg     0.8250    0.8610    0.8421      1324
+
+F-score:  0.8398
+07/01/2020 10:55:13 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:55:13 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:55:13 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:55:19 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.80it/s]
+07/01/2020 10:55:19 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8953    0.9227    0.9088       621
+      LOC     0.8251    0.8483    0.8366       178
+      ORG     0.7788    0.8557    0.8154       395
+     MISC     0.6323    0.6242    0.6282       157
+
+micro avg     0.8192    0.8586    0.8385      1351
+macro avg     0.8214    0.8586    0.8394      1351
+
+Epoch:  32%|█████████████████████████████████████▊                                                                                 | 7/22 [11:37<24:53, 99.54s/it]07/01/2020 10:55:23 - INFO - __main__ -   ********** Epoch: 7 **********
+07/01/2020 10:55:23 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:55:23 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:55:23 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:56:48 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 10:56:48 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:56:48 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:56:54 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 10:56:54 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8957    0.9058    0.9007       626
+      ORG     0.8105    0.8213    0.8159       375
+      LOC     0.8553    0.7514    0.8000       173
+     MISC     0.6497    0.7667    0.7034       150
+
+micro avg     0.8333    0.8459    0.8396      1324
+macro avg     0.8384    0.8459    0.8412      1324
+
+F-score:  0.8396
+07/01/2020 10:56:54 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:56:54 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:56:54 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:57:00 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 10:57:00 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8847    0.9147    0.8994       621
+      LOC     0.8480    0.8146    0.8309       178
+      ORG     0.8120    0.8203    0.8161       395
+     MISC     0.5988    0.6561    0.6261       157
+
+micro avg     0.8237    0.8438    0.8336      1351
+macro avg     0.8254    0.8438    0.8343      1351
+
+Epoch:  36%|███████████████████████████████████████████▎                                                                           | 8/22 [13:14<23:04, 98.89s/it]07/01/2020 10:57:00 - INFO - __main__ -   ********** Epoch: 8 **********
+07/01/2020 10:57:00 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:57:00 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:57:00 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 10:58:26 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 10:58:26 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:58:26 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:58:32 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 10:58:32 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9278    0.9026    0.9150       626
+      ORG     0.7975    0.8400    0.8182       375
+      LOC     0.7527    0.8092    0.7799       173
+     MISC     0.6846    0.6800    0.6823       150
+
+micro avg     0.8361    0.8474    0.8417      1324
+macro avg     0.8404    0.8474    0.8436      1324
+
+F-score:  0.8417
+07/01/2020 10:58:32 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 10:58:32 - INFO - __main__ -     Num examples = 723
+07/01/2020 10:58:32 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 10:58:38 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 10:58:38 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9222    0.9163    0.9192       621
+      LOC     0.7835    0.8539    0.8172       178
+      ORG     0.8120    0.8203    0.8161       395
+     MISC     0.6934    0.6051    0.6463       157
+
+micro avg     0.8457    0.8438    0.8448      1351
+macro avg     0.8451    0.8438    0.8439      1351
+
+Epoch:  41%|████████████████████████████████████████████████▋                                                                      | 9/22 [14:56<21:37, 99.82s/it]07/01/2020 10:58:42 - INFO - __main__ -   ********** Epoch: 9 **********
+07/01/2020 10:58:42 - INFO - __main__ -     Num examples = 3373
+07/01/2020 10:58:42 - INFO - __main__ -     Batch size = 32
+07/01/2020 10:58:42 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:00:08 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:00:08 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:00:08 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:00:14 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.80it/s]
+07/01/2020 11:00:14 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9089    0.9089    0.9089       626
+      ORG     0.7990    0.8373    0.8177       375
+      LOC     0.8182    0.7803    0.7988       173
+     MISC     0.7333    0.7333    0.7333       150
+
+micro avg     0.8443    0.8520    0.8481      1324
+macro avg     0.8460    0.8520    0.8488      1324
+
+F-score:  0.8481
+07/01/2020 11:00:14 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:00:14 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:00:14 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:00:20 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:00:20 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8972    0.9130    0.9050       621
+      LOC     0.8523    0.8427    0.8475       178
+      ORG     0.8170    0.8253    0.8212       395
+     MISC     0.7246    0.6369    0.6780       157
+
+micro avg     0.8492    0.8460    0.8476      1351
+macro avg     0.8478    0.8460    0.8465      1351
+
+Epoch:  45%|█████████████████████████████████████████████████████▏                                                               | 10/22 [16:38<20:04, 100.39s/it]07/01/2020 11:00:24 - INFO - __main__ -   ********** Epoch: 10 **********
+07/01/2020 11:00:24 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:00:24 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:00:24 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:01:49 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 11:01:49 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:01:49 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:01:55 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 11:01:55 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9076    0.9105    0.9091       626
+      ORG     0.7852    0.8773    0.8287       375
+      LOC     0.8794    0.7168    0.7898       173
+     MISC     0.7188    0.7667    0.7419       150
+
+micro avg     0.8423    0.8595    0.8508      1324
+macro avg     0.8479    0.8595    0.8518      1324
+
+F-score:  0.8508
+07/01/2020 11:01:55 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:01:55 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:01:55 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:02:01 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:02:01 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8853    0.9195    0.9021       621
+      LOC     0.8820    0.7978    0.8378       178
+      ORG     0.7817    0.8430    0.8112       395
+     MISC     0.6824    0.6433    0.6623       157
+
+micro avg     0.8300    0.8490    0.8394      1351
+macro avg     0.8310    0.8490    0.8392      1351
+
+Epoch:  50%|██████████████████████████████████████████████████████████▌                                                          | 11/22 [18:19<18:27, 100.72s/it]07/01/2020 11:02:05 - INFO - __main__ -   ********** Epoch: 11 **********
+07/01/2020 11:02:05 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:02:05 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:02:05 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:03:31 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:03:31 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:03:31 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:03:37 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:03:37 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9361    0.8898    0.9124       626
+      ORG     0.8076    0.8507    0.8286       375
+      LOC     0.8344    0.7572    0.7939       173
+     MISC     0.6532    0.7533    0.6997       150
+
+micro avg     0.8466    0.8459    0.8462      1324
+macro avg     0.8544    0.8459    0.8491      1324
+
+F-score:  0.8462
+07/01/2020 11:03:37 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:03:37 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:03:37 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:03:43 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:03:43 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9303    0.9034    0.9167       621
+      LOC     0.8400    0.8258    0.8329       178
+      ORG     0.8139    0.8304    0.8221       395
+     MISC     0.6899    0.6943    0.6921       157
+
+micro avg     0.8538    0.8475    0.8507      1351
+macro avg     0.8565    0.8475    0.8519      1351
+
+Epoch:  55%|████████████████████████████████████████████████████████████████▎                                                     | 12/22 [19:57<16:37, 99.78s/it]07/01/2020 11:03:43 - INFO - __main__ -   ********** Epoch: 12 **********
+07/01/2020 11:03:43 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:03:43 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:03:43 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:05:09 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:05:09 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:05:09 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:05:15 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:05:15 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9214    0.8994    0.9103       626
+      ORG     0.8060    0.8533    0.8290       375
+      LOC     0.8214    0.7977    0.8094       173
+     MISC     0.6746    0.7600    0.7147       150
+
+micro avg     0.8420    0.8573    0.8496      1324
+macro avg     0.8477    0.8573    0.8519      1324
+
+F-score:  0.8496
+07/01/2020 11:05:15 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:05:15 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:05:15 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:05:21 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:05:21 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9125    0.9066    0.9095       621
+      LOC     0.8261    0.8539    0.8398       178
+      ORG     0.8019    0.8405    0.8208       395
+     MISC     0.7020    0.6752    0.6883       157
+
+micro avg     0.8428    0.8534    0.8481      1351
+macro avg     0.8443    0.8534    0.8487      1351
+
+Epoch:  59%|█████████████████████████████████████████████████████████████████████▋                                                | 13/22 [21:35<14:52, 99.17s/it]07/01/2020 11:05:21 - INFO - __main__ -   ********** Epoch: 13 **********
+07/01/2020 11:05:21 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:05:21 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:05:21 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:06:46 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 11:06:46 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:06:46 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:06:52 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:06:52 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9262    0.9026    0.9142       626
+      ORG     0.8260    0.8480    0.8368       375
+      LOC     0.8214    0.7977    0.8094       173
+     MISC     0.6237    0.7733    0.6905       150
+
+micro avg     0.8410    0.8588    0.8498      1324
+macro avg     0.8499    0.8588    0.8533      1324
+
+F-score:  0.8498
+07/01/2020 11:06:52 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:06:52 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:06:52 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:06:58 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:06:58 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9157    0.9098    0.9128       621
+      LOC     0.8098    0.8371    0.8232       178
+      ORG     0.8177    0.8177    0.8177       395
+     MISC     0.6243    0.6879    0.6545       157
+
+micro avg     0.8352    0.8475    0.8413      1351
+macro avg     0.8392    0.8475    0.8432      1351
+
+Epoch:  64%|███████████████████████████████████████████████████████████████████████████                                           | 14/22 [23:12<13:09, 98.70s/it]07/01/2020 11:06:58 - INFO - __main__ -   ********** Epoch: 14 **********
+07/01/2020 11:06:58 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:06:58 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:06:58 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:08:24 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.37it/s]
+07/01/2020 11:08:24 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:08:24 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:08:30 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:08:30 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9262    0.9026    0.9142       626
+      ORG     0.8076    0.8507    0.8286       375
+      LOC     0.8408    0.7630    0.8000       173
+     MISC     0.6647    0.7400    0.7003       150
+
+micro avg     0.8461    0.8512    0.8486      1324
+macro avg     0.8518    0.8512    0.8508      1324
+
+F-score:  0.8486
+07/01/2020 11:08:30 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:08:30 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:08:30 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:08:36 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.69it/s]
+07/01/2020 11:08:36 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9109    0.9050    0.9079       621
+      LOC     0.8555    0.8315    0.8433       178
+      ORG     0.8144    0.8329    0.8235       395
+     MISC     0.7095    0.6688    0.6885       157
+
+micro avg     0.8518    0.8468    0.8493      1351
+macro avg     0.8519    0.8468    0.8492      1351
+
+Epoch:  68%|████████████████████████████████████████████████████████████████████████████████▍                                     | 15/22 [24:50<11:28, 98.40s/it]07/01/2020 11:08:36 - INFO - __main__ -   ********** Epoch: 15 **********
+07/01/2020 11:08:36 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:08:36 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:08:36 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:10:03 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:27<00:00,  1.37it/s]
+07/01/2020 11:10:03 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:10:03 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:10:09 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:10:09 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9385    0.9026    0.9202       626
+      ORG     0.8060    0.8533    0.8290       375
+      LOC     0.8242    0.7861    0.8047       173
+     MISC     0.6647    0.7400    0.7003       150
+
+micro avg     0.8486    0.8550    0.8518      1324
+macro avg     0.8551    0.8550    0.8544      1324
+
+F-score:  0.8518
+07/01/2020 11:10:09 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:10:09 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:10:09 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:10:15 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:10:15 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9195    0.9018    0.9106       621
+      LOC     0.8287    0.8427    0.8357       178
+      ORG     0.8000    0.8304    0.8149       395
+     MISC     0.7067    0.6752    0.6906       157
+
+micro avg     0.8468    0.8468    0.8468      1351
+macro avg     0.8479    0.8468    0.8472      1351
+
+Epoch:  73%|█████████████████████████████████████████████████████████████████████████████████████▊                                | 16/22 [26:33<09:59, 99.90s/it]07/01/2020 11:10:19 - INFO - __main__ -   ********** Epoch: 16 **********
+07/01/2020 11:10:19 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:10:19 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:10:19 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:11:45 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:11:45 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:11:45 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:11:51 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 11:11:51 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9267    0.9089    0.9177       626
+      ORG     0.7965    0.8560    0.8252       375
+      LOC     0.8375    0.7746    0.8048       173
+     MISC     0.6855    0.7267    0.7055       150
+
+micro avg     0.8462    0.8557    0.8509      1324
+macro avg     0.8509    0.8557    0.8527      1324
+
+F-score:  0.8509
+07/01/2020 11:11:51 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:11:51 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:11:51 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:11:57 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:11:57 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9113    0.9098    0.9106       621
+      LOC     0.8621    0.8427    0.8523       178
+      ORG     0.7962    0.8506    0.8225       395
+     MISC     0.6993    0.6369    0.6667       157
+
+micro avg     0.8457    0.8520    0.8488      1351
+macro avg     0.8465    0.8520    0.8488      1351
+
+Epoch:  77%|███████████████████████████████████████████████████████████████████████████████████████████▏                          | 17/22 [28:11<08:16, 99.26s/it]07/01/2020 11:11:57 - INFO - __main__ -   ********** Epoch: 17 **********
+07/01/2020 11:11:57 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:11:57 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:11:57 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:13:23 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:13:23 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:13:23 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:13:29 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 11:13:29 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9246    0.9201    0.9223       626
+      ORG     0.7946    0.8560    0.8241       375
+      LOC     0.8500    0.7861    0.8168       173
+     MISC     0.7134    0.7467    0.7296       150
+
+micro avg     0.8507    0.8648    0.8577      1324
+macro avg     0.8541    0.8648    0.8589      1324
+
+F-score:  0.8577
+07/01/2020 11:13:29 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:13:29 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:13:29 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:13:35 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:13:35 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8986    0.9130    0.9058       621
+      LOC     0.8671    0.8427    0.8547       178
+      ORG     0.7887    0.8506    0.8185       395
+     MISC     0.7214    0.6433    0.6801       157
+
+micro avg     0.8417    0.8542    0.8479      1351
+macro avg     0.8417    0.8542    0.8473      1351
+
+Epoch:  82%|████████████████████████████████████████████████████████████████████████████████████████████████▌                     | 18/22 [29:53<06:39, 99.98s/it]07/01/2020 11:13:39 - INFO - __main__ -   ********** Epoch: 18 **********
+07/01/2020 11:13:39 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:13:39 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:13:39 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:15:04 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.37it/s]
+07/01/2020 11:15:04 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:15:04 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:15:10 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 11:15:10 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9256    0.9137    0.9196       626
+      ORG     0.7995    0.8613    0.8293       375
+      LOC     0.8500    0.7861    0.8168       173
+     MISC     0.7025    0.7400    0.7208       150
+
+micro avg     0.8510    0.8625    0.8567      1324
+macro avg     0.8547    0.8625    0.8581      1324
+
+F-score:  0.8567
+07/01/2020 11:15:10 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:15:10 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:15:10 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:15:16 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:15:16 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9014    0.9130    0.9072       621
+      LOC     0.8721    0.8427    0.8571       178
+      ORG     0.7995    0.8481    0.8231       395
+     MISC     0.7034    0.6497    0.6755       157
+
+micro avg     0.8448    0.8542    0.8495      1351
+macro avg     0.8448    0.8542    0.8491      1351
+
+Epoch:  86%|█████████████████████████████████████████████████████████████████████████████████████████████████████▉                | 19/22 [31:30<04:57, 99.25s/it]07/01/2020 11:15:16 - INFO - __main__ -   ********** Epoch: 19 **********
+07/01/2020 11:15:16 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:15:16 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:15:16 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:16:42 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.35it/s]
+07/01/2020 11:16:42 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:16:42 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:16:48 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.75it/s]
+07/01/2020 11:16:48 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9213    0.9169    0.9191       626
+      ORG     0.8010    0.8587    0.8288       375
+      LOC     0.8535    0.7746    0.8121       173
+     MISC     0.7125    0.7600    0.7355       150
+
+micro avg     0.8512    0.8640    0.8576      1324
+macro avg     0.8547    0.8640    0.8588      1324
+
+F-score:  0.8576
+07/01/2020 11:16:48 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:16:48 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:16:48 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:16:54 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:16:54 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.8984    0.9114    0.9049       621
+      LOC     0.8765    0.8371    0.8563       178
+      ORG     0.7976    0.8481    0.8221       395
+     MISC     0.7143    0.6688    0.6908       157
+
+micro avg     0.8443    0.8549    0.8496      1351
+macro avg     0.8447    0.8549    0.8494      1351
+
+Epoch:  91%|███████████████████████████████████████████████████████████████████████████████████████████████████████████▎          | 20/22 [33:08<03:17, 98.82s/it]07/01/2020 11:16:54 - INFO - __main__ -   ********** Epoch: 20 **********
+07/01/2020 11:16:54 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:16:54 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:16:54 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:18:20 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.34it/s]
+07/01/2020 11:18:20 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:18:20 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:18:26 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.77it/s]
+07/01/2020 11:18:26 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9287    0.9153    0.9220       626
+      ORG     0.8025    0.8560    0.8284       375
+      LOC     0.8599    0.7803    0.8182       173
+     MISC     0.6994    0.7600    0.7284       150
+
+micro avg     0.8536    0.8633    0.8584      1324
+macro avg     0.8580    0.8633    0.8600      1324
+
+F-score:  0.8584
+07/01/2020 11:18:26 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:18:26 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:18:26 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:18:32 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.78it/s]
+07/01/2020 11:18:32 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9053    0.9082    0.9068       621
+      LOC     0.8765    0.8371    0.8563       178
+      ORG     0.8029    0.8456    0.8237       395
+     MISC     0.7095    0.6688    0.6885       157
+
+micro avg     0.8483    0.8527    0.8505      1351
+macro avg     0.8488    0.8527    0.8505      1351
+
+Epoch:  95%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋     | 21/22 [34:50<01:39, 99.77s/it]07/01/2020 11:18:36 - INFO - __main__ -   ********** Epoch: 21 **********
+07/01/2020 11:18:36 - INFO - __main__ -     Num examples = 3373
+07/01/2020 11:18:36 - INFO - __main__ -     Batch size = 32
+07/01/2020 11:18:36 - INFO - __main__ -     Num steps = 2310
+                                                                                                                                                                  07/01/2020 11:20:02 - INFO - __main__ -   ***** Running evaluation on Dev Set*****██████████████████████████████████████████████| 106/106 [01:25<00:00,  1.36it/s]
+07/01/2020 11:20:02 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:20:02 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:20:08 - INFO - __main__ -   ***** Dev Eval results *****████████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.79it/s]
+07/01/2020 11:20:08 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9314    0.9105    0.9208       626
+      ORG     0.8020    0.8533    0.8269       375
+      LOC     0.8599    0.7803    0.8182       173
+     MISC     0.6975    0.7533    0.7244       150
+
+micro avg     0.8544    0.8595    0.8569      1324
+macro avg     0.8589    0.8595    0.8586      1324
+
+F-score:  0.8569
+07/01/2020 11:20:08 - INFO - __main__ -   ***** Running Test evaluation *****
+07/01/2020 11:20:08 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:20:08 - INFO - __main__ -     Batch size = 16
+                                                                                                                                                                  07/01/2020 11:20:14 - INFO - __main__ -   ***** Test Eval results *****███████████████████████████████████████████████████████████| 46/46 [00:05<00:00,  7.80it/s]
+07/01/2020 11:20:14 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9126    0.9082    0.9104       621
+      LOC     0.8817    0.8371    0.8588       178
+      ORG     0.8068    0.8456    0.8257       395
+     MISC     0.7143    0.6688    0.6908       157
+
+micro avg     0.8540    0.8527    0.8533      1351
+macro avg     0.8545    0.8527    0.8533      1351
+
+Epoch: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 22/22 [36:28<00:00, 99.08s/it]
+**************************************************
+The best epoch on the dev set:  20
+The best Micro-F1 score on the dev set:  0.8584
+The best epoch on the test set:  21
+The best Micro-F1 score on the test set:  0.8533
+
+
+The number of samples: 723
+The number of images: 723
+07/01/2020 11:20:17 - INFO - __main__ -   *** Example ***
+07/01/2020 11:20:17 - INFO - __main__ -   guid: test-0
+07/01/2020 11:20:17 - INFO - __main__ -   tokens: C ##iti ##field Fan View : R ##T @ j ##eh ##nny ##b ##good ##e What a gorgeous day for baseball ! St ##uck in that Sa ##tur ##da ##ze . # New ##Y ##or ##k ##M ##ets V ##S # Sa …
+07/01/2020 11:20:17 - INFO - __main__ -   input_ids: 101 140 17030 2427 16061 10344 131 155 1942 137 179 10486 15863 1830 23684 1162 1327 170 10144 1285 1111 3866 106 1457 8474 1107 1115 17784 20362 1810 3171 119 108 1203 3663 1766 1377 2107 6248 159 1708 108 17784 795 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   label: 11 8 10 10 1 1 1 1 10 1 4 10 10 10 10 10 1 1 1 1 1 1 1 1 10 1 1 1 10 10 10 1 1 6 10 10 10 10 10 1 10 1 1 1 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   auxlabel: 5 2 4 4 1 1 1 1 4 1 2 4 4 4 4 4 1 1 1 1 1 1 1 1 4 1 1 1 4 4 4 1 1 2 4 4 4 4 4 1 4 1 1 1 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   *** Example ***
+07/01/2020 11:20:17 - INFO - __main__ -   guid: test-1
+07/01/2020 11:20:17 - INFO - __main__ -   tokens: Just used my Pass Master on Wayne Rooney on @ ultimate ##fan ##li ##ve for # m ##uf ##c vs # a ##f ##c ##b
+07/01/2020 11:20:17 - INFO - __main__ -   input_ids: 101 2066 1215 1139 9157 3257 1113 5489 27238 1113 137 10010 16740 2646 2707 1111 108 182 16205 1665 5016 108 170 2087 1665 1830 102 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   input_mask: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   segment_ids: 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   label: 11 1 1 1 1 1 1 4 5 1 1 1 10 10 10 1 1 6 10 10 1 1 6 10 10 10 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+07/01/2020 11:20:17 - INFO - __main__ -   auxlabel: 5 1 1 1 1 1 1 2 3 1 1 1 4 4 4 1 1 2 4 4 1 1 2 4 4 4 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+the number of problematic samples: 78
+07/01/2020 11:20:25 - INFO - __main__ -   ***** Running Test Evaluation with the Best Model on the Dev Set*****
+07/01/2020 11:20:25 - INFO - __main__ -     Num examples = 723
+07/01/2020 11:20:25 - INFO - __main__ -     Batch size = 16
+Evaluating:   0%|                                                                                                                          | 0/46 [00:00<?, ?it/s]run_mtmner_crf.py:1009: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  trans_matrix = torch.tensor(trans_matrix).to(device)
+Evaluating: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 46/46 [00:06<00:00,  7.42it/s]
+The number of samples: 723
+The number of images: 723
+Overall:  0.8484179543782193 0.8534418948926721 0.8509225092250922
+Person:  0.9082125603864735 0.9082125603864735 0.9082125603864735
+Location:  0.8764705882352941 0.8370786516853933 0.8563218390804598
+Organization:  0.8014354066985646 0.8481012658227848 0.8241082410824108
+Miscellaneous:  0.7046979865771812 0.6687898089171974 0.6862745098039215
+07/01/2020 11:20:32 - INFO - __main__ -   ***** Test Eval results *****
+07/01/2020 11:20:32 - INFO - __main__ -   
+           precision    recall  f1-score   support
+
+      PER     0.9082    0.9082    0.9082       621
+      LOC     0.8765    0.8371    0.8563       178
+      ORG     0.8014    0.8481    0.8241       395
+     MISC     0.7047    0.6688    0.6863       157
+
+micro avg     0.8484    0.8534    0.8509      1351
+macro avg     0.8492    0.8534    0.8510      1351
