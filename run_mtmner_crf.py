@@ -616,21 +616,21 @@ def main():
     start_label_id = processor.get_start_label_id()
     stop_label_id = processor.get_stop_label_id()
 
-    #'''
+    #''' initialization of our conversion matrix, in our implementation, it is a 7*12 matrix initialized as follows:
     trans_matrix = np.zeros((auxnum_labels,num_labels), dtype=float)
     trans_matrix[0,0]=1 # pad to pad
-    trans_matrix[1,1]=1
-    trans_matrix[2,2]=0.25
-    trans_matrix[2,4]=0.25
-    trans_matrix[2,6]=0.25
-    trans_matrix[2,8]=0.25
-    trans_matrix[3,3]=0.25
-    trans_matrix[3,5]=0.25
-    trans_matrix[3,7]=0.25
-    trans_matrix[3,9]=0.25
-    trans_matrix[4,10]=1
-    trans_matrix[5,11]=1
-    trans_matrix[6,12]=1
+    trans_matrix[1,1]=1 # O to O
+    trans_matrix[2,2]=0.25 # B to B-MISC
+    trans_matrix[2,4]=0.25 # B to B-PER
+    trans_matrix[2,6]=0.25 # B to B-ORG
+    trans_matrix[2,8]=0.25 # B to B-LOC
+    trans_matrix[3,3]=0.25 # I to I-MISC
+    trans_matrix[3,5]=0.25 # I to I-PER
+    trans_matrix[3,7]=0.25 # I to I-ORG
+    trans_matrix[3,9]=0.25 # I to I-LOC
+    trans_matrix[4,10]=1   # X to X
+    trans_matrix[5,11]=1   # [CLS] to [CLS]
+    trans_matrix[6,12]=1   # [SEP] to [SEP]
     '''
     trans_matrix = np.zeros((num_labels, auxnum_labels), dtype=float)
     trans_matrix[0,0]=1 # pad to pad
