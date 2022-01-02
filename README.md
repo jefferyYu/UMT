@@ -1,5 +1,5 @@
 # Unified Multimodal Transformer (UMT) for Multimodal Named Entity Recognition (MNER)
-Two MNER Datasets and Codes for our ACL'2020 paper: Improving Multimodal Named Entity Recognition via Entity Span Detection with Unified Multimodal Transformer.
+Two MNER Datasets and Codes for our ACL'2020 paper: [Improving Multimodal Named Entity Recognition via Entity Span Detection with Unified Multimodal Transformer](https://aclanthology.org/2020.acl-main.306.pdf)
 
 Author
 
@@ -20,6 +20,7 @@ July 1, 2020
 
 * PyTorch 1.0.0
 * Python 3.7
+* pytorch-crf 0.7.2
 
 ## Code Usage
 
