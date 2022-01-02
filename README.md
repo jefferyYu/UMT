@@ -35,7 +35,7 @@ sh run_mtmner_crf.sh
 
 ### Evaluation
 - In our codes, we mainly use "seqeval" to compute Micro-F1 as the evaluation metrics. Note that if you use the latest version of seqeval (as it may also report the weighted F1 score), you may need to change our Micro-F1 score parsing code as follows: float(report.split('\n')[-3].split('      ')[-2].split('    ')[-1]) to float(report.split('\n')[-4].split('      ')[-2].split('    ')[-1]).
-- In addition to "seqeval", we also borrow the evaluation code from this repo (https://github.com/jinlanfu/NERmultimodal) to compute Micro-F1. The Micro-F1 scores based on these two codes should be the same.
+- In addition to "seqeval", we also borrow the evaluation code from this [repo](https://github.com/jinlanfu/NERmultimodal) to compute Micro-F1. The Micro-F1 scores based on these two codes should be the same.
 
 ## Acknowledgements
 - Using these two datasets means you have read and accepted the copyrights set by Twitter and dataset providers.
